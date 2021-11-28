@@ -10,21 +10,51 @@ int main()
 {   int dadoA, dadoB;
     dadoA = funcionDadoInicio(1,100);
     dadoB = funcionDadoInicio(1,100);
-    cout << "Dado A :" << dadoA << endl;
-    cout << "Dado B :" << dadoB;
-
+    while (dadoA == dadoB){
+        dadoB = funcionDadoInicio(1,100);
+    }
+    int rondaActual = 1;
+    int RONDAS = 5;
     /// Mostrar menu principal
+
+
     ///     Acceso a jugar
     ///         Pedir nombre de jugadores
+                string jugadorA, jugadorB;
+                cout << "Nombre del jugador: ";
+                cin >> jugadorA;
+                cout << "Nombre del jugador: ";
+                cin >> jugadorB;
+
     ///         Iniciar juego
+                string jugador1, jugador2;
+
     ///         Tirar dado para decidir jugador 1
-    ///         Mostrar
+                if (dadoA > dadoB){
+                    jugador1 = jugadorA;
+                    jugador2 = jugadorB;
+                } if (dadoB > dadoA){
+                    jugador1 = jugadorB;
+                    jugador2 = jugadorA;
+                }
+                int dadosStock1 = 6;
+                int dadosStock2 = 6;
+
+    ///         Rondas 5 o hasta que dados stock sean 0
+                while (rondaActual != RONDAS + 1 || dadosStock1 == 0 || dadosStock2 == 0 ){
+                    cout << "Entro al while" << endl;
+                    cout << dadosStock1;
+
     ///             Quien es el jugador 1 y el 2
-    ///             Comenzar ronda
+
     ///             Mostrar numero de ronda actual
+
     ///             Nombre del jugador que tira
+
     ///             Puntaje acumulado de ambos jugadores
+
     ///             Cantidad actual de dados stock de cada jugador
+
     ///         Jugada de ronda del jugador 1
     ///             Tirada dados 12
     ///             Mostrar dados y suma de ellos
@@ -40,7 +70,10 @@ int main()
     ///                     Mostrar que gano la partida y finaliza el juego
     ///             Acumular puntaje
     ///         Jugada de ronda del jugador 2
-    ///         Repetir rondas hasta 5 por jugador o hasta que alguno no tenga dados stock
+
+
+                    rondaActual ++;
+                }
 
     ///     Acceso a estadisticas
     ///         Mostrar nombre del jugador que obtuvo el mayor puntaje y el puntaje
