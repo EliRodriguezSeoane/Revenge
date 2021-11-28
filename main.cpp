@@ -15,10 +15,11 @@ int main()
         dadoB = funcionDado(1,100);
     }
     int rondaActual = 1;
-    int RONDAS = 2;
+    int RONDAS = 1;
     int dado12A, dado12B;
     int numeroObjetivo;
     int dado;
+    int i;
     /// Mostrar menu principal
 
 
@@ -43,7 +44,7 @@ int main()
                 }
                 int dadosStock1 = 6;
                 int dadosStock2 = 6;
-    ///         Quien es el jugador 1 y el 2
+    ///         Quien es el jugador 1 y el 2 (Mostrar los dados de 100 para que vean quien gano el jugador 1)
                 cout << "El jugador 1 es: " << jugador1 << endl;
                 cout << "El jugador 2 es: " << jugador2 << endl;
 
@@ -76,12 +77,24 @@ int main()
     ///             Mostrar dados y suma de ellos
                     cout << "Los dados de 12 caras son: " << dado12A << " - " << dado12B << endl;
                     numeroObjetivo = dado12A + dado12B;
+                    cout << "El numero objetivo es: " << numeroObjetivo << endl;
 
     ///             Tirada dados stock
-                    for (i=0, i<dadosStock1, i++){
+                    int vDadosStock[dadosStock1];
+
+                    for (i=0; i<dadosStock1; i++){
                         dado = funcionDado(1,6);
-                        cout << dado << " ";
+                        vDadosStock[i] = dado;
+                        cout << vDadosStock[i] << " - ";
                     }
+                    int dadoElegido;
+                    cout << "Elija los dados para llegar al numero objetivo: ";
+                    cin >> dadoElegido >> endl;
+
+
+
+
+
     ///             Mostrar dados
     ///             Preguntar a jugador que dado selecciona o jugador pone 0 para terminar la ronda asi
     ///             Sumar dados seleccionados y comparar con la suma objetivo
