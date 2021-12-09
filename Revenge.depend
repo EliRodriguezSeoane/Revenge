@@ -1,4 +1,16 @@
 # depslib dependency file v1.0
-1638928653 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\main.cpp
+1639022930 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\main.cpp
 	<iostream>
+	<cstdlib>
+	<ctime>
+	"funciones.h"
+
+1639022871 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\funciones.cpp
+	<iostream>
+	<cstdlib>
+	<string>
+
+1639022747 c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\funciones.h
+	<vector>
+	<string>
 
