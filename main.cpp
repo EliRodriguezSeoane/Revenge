@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -6,35 +8,24 @@ using namespace std;
 int funcionDado(int inicio, int fin) {
     return rand() % ( fin - inicio + 1) + inicio;
 }
-void decisionJugador1(string jugador1, string jugador2){
-int dadoA, dadoB;
+string decisionJugador1(string jugadorA, string jugadorB){
+    int dadoA, dadoB;
     dadoA = funcionDado(1,100);
     dadoB = funcionDado(1,100);
     while (dadoA == dadoB){
         dadoB = funcionDado(1,100);
     }
-    string jugadorA, jugadorB;
-    cout << "Nombre del jugador: ";
-    cin >> jugadorA;
-    cout << "Nombre del jugador: ";
-    cin >> jugadorB;
-    cout << "--------------------------------------------------------" << endl << endl;
-
     cout << "Tirada para decidir Jugador 1: ";
     if (dadoA > dadoB){
-        jugador1 = jugadorA;
-        jugador2 = jugadorB;
         cout << "Gana " << jugadorA << " con " << dadoA << endl;
-    } if (dadoB > dadoA){
-         jugador1 = jugadorB;
-         jugador2 = jugadorA;
-         cout << "Gana " << jugadorB << " con " << dadoB << endl;
+        return jugadorA;
+    } else{
+        cout << "Gana " << jugadorB << " con " << dadoB << endl;
+        return jugadorB;
     }
 }
 
 void mostrarDatos(int rondaActual, int puntosJ1, int puntosJ2, int dadosStock1, int dadosStock2){
-    cout << "Juega el Jugador 1" << endl;
-
     cout << "Ronda actual: " << rondaActual << endl;
 
     cout << "Puntaje jugador 1: " << puntosJ1 << endl;
@@ -60,42 +51,36 @@ void mostrarDados(int v[], int cant){
     }
 }
 
-void chequeoDados(int v[], int cant, int elegido, int puntos, int cantElegidos){
-    bool chequeo;
+bool chequeoDados(int v[], int cant, int elegido){
+    bool chequeo = false;
     for(int i=0; i<cant; i++){
        if(elegido==v[i]){
           chequeo = true;
-       }else {
-          chequeo = false;
-        }
-    }
-    if (chequeo){
-      cantElegidos ++;
-      puntos+=elegido;
-    }else {
-      cout << "El numero elegido no esta entre los dados tirados." << endl;
-    }
-}
-void eleccionDados(int v[], int cant, int acuDado, int acuElegidos){
-    bool eleccion = false;
-    int dadoElegido;
-
-    while (!eleccion){
-
-       cout << "Elija los dados para llegar al numero objetivo: " << endl;
-       cin >> dadoElegido;
-
-       chequeoDados(v, cant, dadoElegido, acuDado, acuElegidos);
-
-       int termino;
-       cout << "¿Termino de cargar los dados? (0 para si): " << endl;
-       cin >> termino;
-
-       if(termino==0){
-          eleccion = true;
+          return true;
        }
-   }
+     }
+
+    if (!chequeo){
+      cout << "El numero elegido no esta entre los dados tirados." << endl;
+      return false;
+    }
 }
+
+bool eleccionDados(){
+        int termino;
+        cout << "Termino de cargar los dados? (0 para si, 1 para no): ";
+        cin >> termino;
+
+       switch(termino){
+        case 0:
+            return true;
+            break;
+        case 1:
+            return false;
+            break;
+        }
+}
+
 void puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos){
     if (objetivo==acuDado && cant != 0){
         cout << "Jugada exitosa!" << endl;
@@ -115,16 +100,30 @@ int main(){
 
     int objetivo, puntosJ1, puntosJ2;
     objetivo = puntosJ1 = puntosJ2 = 0;
+    string jugadorA, jugadorB;
     string jugador1, jugador2;
     int dadosStock1, dadosStock2;
     dadosStock1 = dadosStock2 = 6;
-    int acuDado, acuElegidos;
+    int acuDado, acuElegidos, dadoElegido;
+    bool eleccion, chequeo;
+    srand(time(NULL));
+
 
     /// Mostrar menu principal
 
 
     ///     Acceso a jugar
-                decisionJugador1(jugador1, jugador2);
+                cout << "Nombre del jugador: ";
+                cin >> jugadorA;
+                cout << "Nombre del jugador: ";
+                cin >> jugadorB;
+                cout << "--------------------------------------------------------" << endl << endl;
+                jugador1 = decisionJugador1(jugadorA, jugadorB);
+                if (jugador1==jugadorA){
+                    jugador2 = jugadorB;
+                } else {
+                    jugador2 = jugadorA;
+                }
 
                 cout << "El jugador 1 es: " << jugador1 << endl;
                 cout << "El jugador 2 es: " << jugador2 << endl << endl;
@@ -143,12 +142,27 @@ int main(){
                     mostrarDados(vDadosStock1, dadosStock1);
                     cout << endl << "--------------------------------------------------------" << endl << endl;
     ///             Preguntar a jugador que dado selecciona o jugador pone 0 para terminar la ronda asi
-                    acuDado =0, acuElegidos = 0;
-                    eleccionDados(vDadosStock1, dadosStock1, acuDado, acuElegidos);
+                    acuDado = acuElegidos = dadoElegido = 0;
+                    eleccion = chequeo = false;
+
+                    while (!eleccion){
+                        cout << "Elija los dados para llegar al numero objetivo: ";
+                        cin >> dadoElegido;
+
+                        chequeo = chequeoDados(vDadosStock1, dadosStock1, dadoElegido);
+                        eleccion = eleccionDados();
+                        if (chequeo){
+                            acuElegidos++;
+                            acuDado+= dadoElegido;
+                        }
+                    }
                     cout << "--------------------------------------------------------" << endl << endl;
     ///             Sumar dados seleccionados y comparar con la suma objetivo
                     dadosStock1 = dadosStock1 - acuElegidos;
                     puntaje(dadosStock1, objetivo, acuDado, acuElegidos, puntosJ1);
+                    cout << "--------------------------------------------------------" << endl << endl;
+                    mostrarDatos(rondaActual, puntosJ1, puntosJ2, dadosStock1, dadosStock2);
+                    cout << "--------------------------------------------------------" << endl << endl;
 
     ///         Jugada de ronda del jugador 2
                     cout << "Juega el jugador 2: " << jugador2 << endl;
@@ -159,8 +173,20 @@ int main(){
                     mostrarDados(vDadosStock2, dadosStock2);
                     cout << endl << "--------------------------------------------------------" << endl << endl;
     ///             Preguntar a jugador que dado selecciona o jugador pone 0 para terminar la ronda asi
-                    acuDado =0, acuElegidos = 0;
-                    eleccionDados(vDadosStock2, dadosStock2, acuDado, acuElegidos);
+                    acuDado = acuElegidos = dadoElegido = 0;
+                    eleccion = chequeo = false;
+
+                    while (!eleccion){
+                        cout << "Elija los dados para llegar al numero objetivo: " << endl;
+                        cin >> dadoElegido;
+
+                        chequeo = chequeoDados(vDadosStock2, dadosStock2, dadoElegido);
+                        eleccion = eleccionDados();
+                        if (chequeo){
+                            acuElegidos++;
+                            acuDado+= dadoElegido;
+                        }
+                    }
                     cout << "--------------------------------------------------------" << endl << endl;
     ///             Sumar dados seleccionados y comparar con la suma objetivo
                     dadosStock2 = dadosStock2 - acuElegidos;
