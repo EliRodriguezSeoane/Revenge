@@ -2,11 +2,13 @@
 
 Desarrollo de un juego de dados para la materia de Laboratorio I de la Tecnicatura Universitaria en Programación de la UTN de General Pacheco.
 
+
 Integrantes del grupo:
 
   Santiago Giussani
   
   Eliana Rodriguez Seoane
+
 
 
 Reglas del juego:
@@ -18,9 +20,11 @@ Reglas del juego:
   El objetivo general del juego es sumar la mayor cantidad de puntos en un total de 5 rondas. O quedarse sin dados.
   
   La suma de puntaje depende de diferentes situaciones que se pueden dar en el juego.
+  
 
   */Al comenzar un juego y por única vez deben tirar cada uno un dado. Quien obtenga el valor mayor comienza la partida.
     En caso de empate se debe repetir la tirada hasta que alguno obtenga el mayor dado./*
+
 
   Cada jugador comienza su turno tirando los dos dados de doce caras, que le darán el número objetivo a alcanzar.
   
@@ -39,6 +43,8 @@ Reglas del juego:
      
   El puntaje de la ronda esta dado por el número objetivo multiplicado por la cantidad de dados elegidos para la suma. El puntaje es acumulable.
   
+
+
 
 
 
