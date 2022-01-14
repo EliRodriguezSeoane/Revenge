@@ -31,18 +31,19 @@ void mostrarDatos(int rondaActual, int puntosJ1, int puntosJ2, int dadosStock1, 
     cout << "Dados Stock jugador 1: " << dadosStock1 << endl;
     cout << "Dados Stock jugador 2: " << dadosStock2 << endl << endl;
 }
-void numeroObjetivo(int objetivo){
+int numeroObjetivo(int objetivo){
     int dado12A, dado12B;
     dado12A = funcionDado(1,12);
     dado12B = funcionDado(1,12);
     cout << "Los dados de 12 caras son: " << dado12A << " - " << dado12B << endl;
     objetivo = dado12A + dado12B;
     cout << "El numero objetivo es: " << objetivo << endl << endl;
+    return objetivo;
 }
 void mostrarDados(int v[], int cant){
-    int dado, uno=1;
+    int dado, uno=1, seis=6;
     for (int i=0; i<cant; i++){
-        dado = funcionDado(uno,cant);
+        dado = funcionDado(uno,seis);
         v[i] = dado;
         cout << v[i] << " - ";
     }
@@ -78,7 +79,7 @@ bool eleccionDados(){
         }
 }
 
-void puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos){
+int puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos){
     if (objetivo==acuDado && cant != 0){
         cout << "Jugada exitosa!" << endl;
         cout << "Pasan al siguiente jugador " << acuElegidos << " dados!" << endl;
@@ -89,4 +90,5 @@ void puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos){
         cout << "No tiene mas dados! Ha ganado la partida!!" << endl << endl;
         puntos += 10000;
     }
+    return puntos;
 }
