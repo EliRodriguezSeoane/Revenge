@@ -3,6 +3,10 @@
 #include <vector>
 #include <string>
 
+int menu ();
+
+int creditos();
+
 int funcionDado(int inicio, int fin);
 
 char decisionJugador1();
