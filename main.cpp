@@ -8,6 +8,7 @@ using namespace std;
 int main(){
     int rondaActual = 1;
     const int RONDAS = 2;
+    const int JUGADORES = 2;
 
     int objetivo, puntosJ1, puntosJ2, puntosMax, dadosStock1, dadosStock2, acuDado, acuElegidos, dadoElegido, menuEleccion, volver;
     objetivo = puntosJ1 = puntosJ2 = puntosMax = 0;
@@ -43,67 +44,30 @@ int main(){
 
         /// Rondas 5 o hasta que dados stock sean 0
         while (rondaActual <= RONDAS && dadosStock1 != 0 && dadosStock2 != 0){
-            mostrarDatos(rondaActual, puntosJ1, puntosJ2, dadosStock1, dadosStock2);
-            cout << "--------------------------------------------------------" << endl << endl;
 
-        /// Jugada de ronda del jugador 1
-            cout << "Juega el jugador 1: " << jugador1 << endl;
-            int objetivo;
-            objetivo = numeroObjetivo(objetivo);
-            cout << "--------------------------------------------------------" << endl << endl;
-            int vDadosStock1[dadosStock1];
-            cout << "Tirada de dados: " << endl;
-            mostrarDados(vDadosStock1, dadosStock1);
-            cout << endl << "--------------------------------------------------------" << endl << endl;
 
-        /// Preguntar a jugador que dado selecciona o jugador pone 0 para terminar la ronda asi
-            acuDado = acuElegidos = dadoElegido = 0;
-            eleccion = chequeo = false;
-
-            while (!eleccion){cout << "Elija los dados para llegar al numero objetivo, para terminar de cargar ponga 0: ";
-                cin >> dadoElegido;
-                chequeo = chequeoDados(vDadosStock1, dadosStock1, dadoElegido);
-                eleccion = eleccionDados();
-
-                if (chequeo){
-                    acuElegidos++;
-                    acuDado += dadoElegido;
-                }
-            }
-
-                cout << "--------------------------------------------------------" << endl << endl;
-
-        /// Sumar dados seleccionados y comparar con la suma objetivo
-                if (objetivo == acuDado){
-                    dadosStock1 = dadosStock1 - acuElegidos;
-                    dadosStock2 = dadosStock2 + acuElegidos;}
-                else if (dadosStock2 > 1){
-                    dadosStock1 += 1;
-                    dadosStock2 -= 1;}
-
-                puntosJ1 = puntaje(dadosStock1, objetivo, acuDado, acuElegidos, puntosJ1);
-                cout << "--------------------------------------------------------" << endl << endl;
+            for(int i=0; i<JUGADORES; i++){
                 mostrarDatos(rondaActual, puntosJ1, puntosJ2, dadosStock1, dadosStock2);
                 cout << "--------------------------------------------------------" << endl << endl;
 
-        /// Jugada de ronda del jugador 2
-                cout << "Juega el jugador 2: " << jugador2 << endl;
+                cout << "Juega el jugador " << i+1 << ": ";
+                if(i+1==1){cout << jugador1 << endl;} else{cout << jugador2 << endl;}
+                int objetivo;
                 objetivo = numeroObjetivo(objetivo);
                 cout << "--------------------------------------------------------" << endl << endl;
-                int vDadosStock2[dadosStock2];
                 cout << "Tirada de dados: " << endl;
-                mostrarDados(vDadosStock2, dadosStock2);
-                cout << endl << "--------------------------------------------------------" << endl << endl;
+                int vDadosStock1[dadosStock1];
+                int vDadosStock2[dadosStock2];
+                if(i+1==1){mostrarDados(vDadosStock1, dadosStock1);}
+                else{mostrarDados(vDadosStock2, dadosStock2);}
 
-        /// Preguntar a jugador que dado selecciona o jugador pone 0 para terminar la ronda asi
+                cout << endl << "--------------------------------------------------------" << endl << endl;
                 acuDado = acuElegidos = dadoElegido = 0;
                 eleccion = chequeo = false;
 
-                while (!eleccion){
-                    cout << "Elija los dados para llegar al numero objetivo: " << endl;
+                while (!eleccion){cout << "Elija los dados para llegar al numero objetivo, para terminar de cargar ponga 0: ";
                     cin >> dadoElegido;
-
-                    chequeo = chequeoDados(vDadosStock2, dadosStock2, dadoElegido);
+                    if(i+1==1){chequeo = chequeoDados(vDadosStock1, dadosStock1, dadoElegido);} else {chequeo = chequeoDados(vDadosStock2, dadosStock2, dadoElegido);}
                     eleccion = eleccionDados();
 
                     if (chequeo){
@@ -111,23 +75,22 @@ int main(){
                         acuDado += dadoElegido;
                     }
                 }
-
+                if (objetivo == acuDado){
+                    dadosStock1 = dadosStock1 - acuElegidos;
+                    dadosStock2 = dadosStock2 + acuElegidos;}
+                else {
+                        if(i+1==1){if (dadosStock2 > 1){
+                        dadosStock1 += 1;
+                        dadosStock2 -= 1;}}
+                        else{ if (dadosStock1 > 1){
+                        dadosStock2 += 1;
+                        dadosStock1 -= 1;}}}
+                if(i+1==1){puntosJ1 = puntaje(dadosStock1, objetivo, acuDado, acuElegidos, puntosJ1);} else{puntosJ2 = puntaje(dadosStock2, objetivo, acuDado, acuElegidos, puntosJ2);}
                 cout << "--------------------------------------------------------" << endl << endl;
 
-        /// Sumar dados seleccionados y comparar con la suma objetivo
-
-                    if (objetivo == acuDado){
-                        dadosStock2 = dadosStock2 - acuElegidos;
-                        dadosStock1 = dadosStock1 + acuElegidos;}
-                    else if (dadosStock1 > 1){
-                        dadosStock2 += 1;
-                        dadosStock1 -= 1;}
-
-                    puntosJ2 = puntaje(dadosStock2, objetivo, acuDado, acuElegidos, puntosJ2);
-                    cout << "--------------------------------------------------------" << endl << endl;
-
-                    rondaActual++;
-                }
+            }
+            rondaActual++;
+        }
 
         //Final. Anuncio del ganador y carga de puntaje maximo.
         if (puntosJ1 == puntosJ2){cout << "La partida termino empatada en " << puntosJ1 << " puntos." << endl << endl;}

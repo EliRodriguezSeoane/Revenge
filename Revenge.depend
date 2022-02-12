@@ -31,3 +31,18 @@
 
 1644024881 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\revenge-main\menu principal santi.cpp
 
+1644704535 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.2\funciones.cpp
+	<iostream>
+	<cstdlib>
+	<string>
+
+1644706032 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.2\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"funciones.h"
+
+1644704535 c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.2\funciones.h
+	<vector>
+	<string>
+
