@@ -1,11 +1,11 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 #include <vector>
-#include <string>
+#include <string.h>
 
-int menu ();
+int menu();
 
-int creditos();
+int salida();
 
 int funcionDado(int inicio, int fin);
 
@@ -17,10 +17,14 @@ int numeroObjetivo(int objetivo);
 
 void mostrarDados(int v[], int cant);
 
-bool chequeoDados(int v[], int cant, int elegido);
+bool chequeoDados(int v[], int cant, int elegido/*, bool eleccion*/);
 
-bool eleccionDados();
+bool eleccionDados(int acuDado, int objetivo);
 
 int puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos);
 
-#endif // FUNCIONES_H_INCLUDED
+void regresoMenu ();
+
+void creditos ();
+
+#endif

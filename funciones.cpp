@@ -5,31 +5,34 @@
 using namespace std;
 
 int menu(){
-        cout << "REVENGE" << endl;
-        cout << "------------------" << endl;
-        cout << "1 - JUGAR" << endl;
-        cout << "2 - ESTADISTICAS" << endl;
-        cout << "3 - CREDITOS" << endl;
-        cout << "------------------" << endl;
-        cout << "0 - SALIR" << endl << endl;
-        int opcion;
-        cout << "Ingrese la opcion que desee: ";
-        cin >> opcion;
-        cout << endl;
+    cout << "REVENGE" << endl;
+    cout << "------------------" << endl;
+    cout << "1 - JUGAR" << endl;
+    cout << "2 - ESTADISTICAS" << endl;
+    cout << "3 - CREDITOS" << endl;
+    cout << "------------------" << endl;
+    cout << "0 - SALIR" << endl << endl;
+    int MenuPrincipal;
+    cout << "Ingrese la opcion que desee: ";
+    cin >> MenuPrincipal;
+    cout << endl;
+    while (MenuPrincipal < 0 || MenuPrincipal > 3){
+        cout << "La opcion ingresada es invalida. Por favor, pruebe otra vez" << endl;
+        cin >> MenuPrincipal;
+    } return MenuPrincipal;
+}
 
-        return opcion;
-    }
-
-int creditos (){
-    cout << "CREDITOS" << endl << endl;
-    cout << "Los integrantes del equipo son:" << endl;
-    cout << "   - Giussani, Santiago           Numero de Legajo: " << endl;
-    cout << "   - Rodriguez Seoane, Eliana     Numero de Legajo: 25.666" << endl << endl;
-
-    int volver;
-    cout << "Presione 1 si desea volver al Menu Principal: ";
-    cin >> volver;
-    return volver;
+int salida(){
+    int salir;
+    cout << "SALIR" << endl << endl;
+    cout << "Esta seguro que desea salir del juego?" << endl;
+    cout << "Presione 0 para salir y 1 para volver al Menu Principal: ";
+    cin >> salir;
+    while (salir != 0 && salir !=1){
+        cout << "La opcion no es correcta, pruebe otra vez" << endl;
+        cout << "Presione 0 para salir y 1 para permanecer en el juego" << endl;
+        cin >> salir;
+    } return salir;
 }
 
 int funcionDado(int inicio, int fin) {
@@ -42,8 +45,7 @@ char decisionJugador1(){
     dadoB = funcionDado(1,100);
     while (dadoA == dadoB){
         dadoB = funcionDado(1,100);
-    }
-    cout << "Tirada para decidir Jugador 1: ";
+    } cout << "Tirada para decidir Jugador 1: ";
     if (dadoA > dadoB){
         return 'A';
     } else{
@@ -52,13 +54,17 @@ char decisionJugador1(){
 }
 
 void mostrarDatos(int rondaActual, int puntosJ1, int puntosJ2, int dadosStock1, int dadosStock2){
-    cout << "Ronda actual: " << rondaActual << endl;
-
-    cout << "Puntaje jugador 1: " << puntosJ1 << endl;
+    string continuar;
+    if (rondaActual == 0){
+        cout << "Los resultados finales son: " << endl << endl;
+    } else {
+        cout << "Ronda actual: " << rondaActual << endl;
+    } cout << "Puntaje jugador 1: " << puntosJ1 << endl;
     cout << "Puntaje jugador 2: " << puntosJ2 << endl;
-
     cout << "Dados Stock jugador 1: " << dadosStock1 << endl;
     cout << "Dados Stock jugador 2: " << dadosStock2 << endl << endl;
+    cout << "Presione cualquier tecla para continuar: ";
+    cin >> continuar;
 }
 
 int numeroObjetivo(int objetivo){
@@ -70,7 +76,6 @@ int numeroObjetivo(int objetivo){
     cout << "El numero objetivo es: " << objetivo << endl << endl;
     return objetivo;
 }
-
 void mostrarDados(int v[], int cant){
     int dado, uno=1, seis=6;
     for (int i=0; i<cant; i++){
@@ -80,49 +85,58 @@ void mostrarDados(int v[], int cant){
     }
 }
 
-bool chequeoDados(int v[], int cant, int elegido){
+bool chequeoDados(int v[], int cant, int elegido/*, bool eleccion*/){
     bool chequeo = false;
-    if (elegido==0){return false;}
     for(int i=0; i<cant; i++){
-       if(elegido==v[i]){
-          chequeo = true;
-          return true;
-       }
-     }
-
-    if (!chequeo){
-      cout << "El numero elegido no esta entre los dados tirados." << endl;
-      return false;
+        if(elegido==v[i]){
+            chequeo = true;
+            v[i] = 0;
+            return true;
+        }
+    } if (!chequeo){
+        cout << "El numero elegido no esta entre los dados tirados." << endl;
+        return false;
     }
 }
 
-bool eleccionDados(){
-        int termino;
-        cout << "Termino de cargar los dados? (0 para si, 1 para no): ";
-        cin >> termino;
-
-       switch(termino){
-        case 0:
+bool eleccionDados(int acuDado, int objetivo){
+        if (acuDado == objetivo){
             return true;
-            break;
-        case 1:
-            return false;
-            break;
         }
+        else if (acuDado > objetivo){
+            cout << endl << "--------------------------------------------------------" << endl;
+            cout << endl << "La suma de los dados seleccionados supera al numero objetivo" << endl;
+            return true;
+        }
+        return false;
 }
 
 int puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos){
     if (objetivo==acuDado && cant != 0){
         cout << "Jugada exitosa!" << endl;
+        cout << "Pasan al siguiente jugador " << acuElegidos << " dados!" << endl << endl;
         puntos += objetivo * acuElegidos;
-        cout << "Puntos: " << objetivo << " x " << acuElegidos << endl;
-        cout << "Pasan al siguiente jugador " << acuElegidos << " dados!" << endl;
     } if (objetivo!=acuDado){
-        cout << "Jugada no exitosa";
+        cout << "Jugada no exitosa" << endl;
+        cout << "Como penalizacion, recibira un dado de su rival" << endl;
+        cout << endl << "--------------------------------------------------------" << endl << endl;
     } if (objetivo==acuDado && cant == 0){
-        cout << "No tiene mas dados! Ha ganado la partida!!" << endl;
-        cout << "Gana automaticamente 10.000 puntos!" << endl << endl;
-        puntos += 10000;
+        cout << "No tiene mas dados! Ha ganado la partida!!" << endl << endl;
+        puntos += (objetivo * acuElegidos) + 10000;
     }
     return puntos;
+}
+
+void regresoMenu (){
+    string salir;
+    cout << "Presione cualquier tecla para volver al Menu Principal: ";
+    cin >> salir;
+    cout << endl << "Usted decidio volver al Menu Principal" << endl << endl;
+}
+
+void creditos (){
+    cout << "CREDITOS" << endl << endl;
+    cout << "Los integrantes del equipo son:" << endl;
+    cout << "   - Giussani, Santiago           Numero de Legajo: 25.497" << endl;
+    cout << "   - Rodriguez Seoane, Eliana     Numero de Legajo: 25.666" << endl << endl;
 }

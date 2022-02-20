@@ -14,35 +14,57 @@
 	<vector>
 	<string>
 
-1644026200 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\revenge-main\funciones.cpp
-	<iostream>
-	<cstdlib>
-	<string>
-
-1644026436 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\revenge-main\main.cpp
+1642185379 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge-main\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
 	"funciones.h"
 
-1644025870 c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\revenge-main\funciones.h
+1642088718 c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge-main\funciones.h
 	<vector>
 	<string>
 
-1644024881 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\revenge-main\menu principal santi.cpp
-
-1644704535 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.2\funciones.cpp
+1642089414 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge-main\funciones.cpp
 	<iostream>
 	<cstdlib>
 	<string>
 
-1644706032 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.2\main.cpp
+1642083779 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge-main\menu principal santi.cpp
+	<iostream>
+
+1644099073 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - Última versión\funciones.cpp
+	<iostream>
+	<cstdlib>
+	<string>
+
+1644100632 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - Última versión\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
 	"funciones.h"
 
-1644704535 c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.2\funciones.h
+1644095970 c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - Última versión\funciones.h
 	<vector>
 	<string>
+
+1642083779 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - Última versión\menu principal santi.cpp
+	<iostream>
+
+1642083779 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - santi\menu principal santi.cpp
+	<iostream>
+
+1645368381 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - santi\funciones.cpp
+	<iostream>
+	<cstdlib>
+	<string>
+
+1645369777 source:c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - santi\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"funciones.h"
+
+1645368373 c:\users\juan pablo\desktop\santi\tecnicatura en programación\laboratorio de computación i\trabajo final\revenge - santi\funciones.h
+	<vector>
+	<string.h>
 
