@@ -68,3 +68,21 @@
 	<vector>
 	<string.h>
 
+1645826893 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.3\funciones.cpp
+	<iostream>
+	<cstdlib>
+	<string>
+
+1645370699 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.3\menu principal santi.cpp
+	<iostream>
+
+1645825286 source:c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.3\main.cpp
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"funciones.h"
+
+1645370699 c:\users\elian\documents\tecnicatura\1er cuatri\laboratorio i\parciales\revenge\v1.3\funciones.h
+	<vector>
+	<string.h>
+

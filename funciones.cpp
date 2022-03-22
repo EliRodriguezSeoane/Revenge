@@ -1,3 +1,4 @@
+#define FUNCIONES_H_INCLUDED
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -54,17 +55,12 @@ char decisionJugador1(){
 }
 
 void mostrarDatos(int rondaActual, int puntosJ1, int puntosJ2, int dadosStock1, int dadosStock2){
-    string continuar;
-    if (rondaActual == 0){
-        cout << "Los resultados finales son: " << endl << endl;
-    } else {
-        cout << "Ronda actual: " << rondaActual << endl;
-    } cout << "Puntaje jugador 1: " << puntosJ1 << endl;
+
+    cout << "Ronda actual: " << rondaActual << endl;
+    cout << "Puntaje jugador 1: " << puntosJ1 << endl;
     cout << "Puntaje jugador 2: " << puntosJ2 << endl;
     cout << "Dados Stock jugador 1: " << dadosStock1 << endl;
     cout << "Dados Stock jugador 2: " << dadosStock2 << endl << endl;
-    cout << "Presione cualquier tecla para continuar: ";
-    cin >> continuar;
 }
 
 int numeroObjetivo(int objetivo){
@@ -111,11 +107,14 @@ bool eleccionDados(int acuDado, int objetivo){
         return false;
 }
 
-int puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos){
+int puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos, bool bono){
     if (objetivo==acuDado && cant != 0){
         cout << "Jugada exitosa!" << endl;
         cout << "Pasan al siguiente jugador " << acuElegidos << " dados!" << endl << endl;
         puntos += objetivo * acuElegidos;
+        if(bono==true){
+            puntos += objetivo * acuElegidos;
+        }
     } if (objetivo!=acuDado){
         cout << "Jugada no exitosa" << endl;
         cout << "Como penalizacion, recibira un dado de su rival" << endl;
@@ -123,6 +122,9 @@ int puntaje(int cant, int objetivo, int acuDado, int acuElegidos, int puntos){
     } if (objetivo==acuDado && cant == 0){
         cout << "No tiene mas dados! Ha ganado la partida!!" << endl << endl;
         puntos += (objetivo * acuElegidos) + 10000;
+        if(bono==true){
+            puntos += (objetivo * acuElegidos) + 10000;
+        }
     }
     return puntos;
 }
